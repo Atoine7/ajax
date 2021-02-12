@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="button">请求PHP</button>
+<br>
+<!-- <form id="getForm">
+  <input type="text" name="name" id="name1">
+  <input type="submit" name="提交">
+</form> -->
+<form id="postForm">
+  <input type="text" name="name" id="name2">
+  <input type="submit" name="提交">
+</form>
+</body>
+<script>
+  document.getElementById('button').addEventListener('click', postForm);
+  // document.getElementById('getForm').addEventListener('submit', getForm);
+  document.getElementById('postForm').addEventListener('submit', postForm);
+// function getForm(e) {
+  //   e.preventDefault();
+  //   var name = document.getElementById('name1').value;
+  //   var xhr = new XMLHttpRequest();
+  //   xhr.open('get','process.php?name=' + name,true)
+  //   xhr.send();
+  //   xhr.onload = function () {
+  //     // var users = JSON.parse(this.responseText);
+  //     console.log(xhr.responseText);
+  //   }
+  // }
+  function postForm(e) {
+    e.preventDefault();
+    var name = document.getElementById('name2').value;
+    var params = "name="+name;
+    var xhr = new XMLHttpRequest();
+    xhr.open('post','process.php',true)
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+    xhr.send(params);
+    xhr.onload = function () {
+      // var users = JSON.parse(this.responseText);
+      console.log(xhr.responseText);
+    }
+  }
+</script>
+</html>
